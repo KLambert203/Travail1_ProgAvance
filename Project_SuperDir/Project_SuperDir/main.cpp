@@ -4,5 +4,5 @@
 
 int main (int aCount, const char ** aVector)
 {
-	
+	printf("Salut Martin!");
 }
