@@ -3,5 +3,7 @@
 #include "IFileInfo.h"
 
 IFileInfo** FindFiles(const char* aFolder) {
-	IFileInfo** lTab =  new lTab*[100];
+	IFileInfo** lTab = new IFileInfo* [100];
+
+	return lTab;
 }
