@@ -158,6 +158,7 @@
     <ClInclude Include="FileInfo_H.h" />
     <ClInclude Include="FileInfo_Other.h" />
     <ClInclude Include="FileInfo_Text.h" />
+    <ClInclude Include="functions.h" />
     <ClInclude Include="IFileInfo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

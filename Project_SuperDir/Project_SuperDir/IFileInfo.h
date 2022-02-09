@@ -4,7 +4,9 @@ class IFileInfo
 {
 
 
-public:
+private:
+
+	virtual ~IFileInfo();
 
 	virtual void Init(const char* aFolder, const char* aFile) = 0;
 

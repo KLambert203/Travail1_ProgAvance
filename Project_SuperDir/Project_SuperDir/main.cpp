@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "functions.h"
+
 
 int main (int aCount, const char ** aVector)
 {
@@ -9,6 +11,8 @@ int main (int aCount, const char ** aVector)
 	{
 		return 1;
 	}
-	printf("Salut Martin!");
+
+	std::cout << Salutation();
+	FindFiles(aVector[1]);
 	return 0;
 }
