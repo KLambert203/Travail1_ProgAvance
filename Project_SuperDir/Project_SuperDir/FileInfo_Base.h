@@ -3,7 +3,7 @@
 #include "IFileInfo.h"
 
 class FileInfo_Base:public IFileInfo {
-public:
+private:
 
 	char mFolder[512];
 	char mFile[256];
