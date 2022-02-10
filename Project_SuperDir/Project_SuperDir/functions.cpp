@@ -8,10 +8,18 @@ using std::string;
 
 IFileInfo** FindFiles(const char* aFolder) {
 	IFileInfo** lTab = new IFileInfo* [100];
-	char FolderLocation[1024];
+
+	for (unsigned int i = 0; i < 100; i++)
+	{
+		lTab[i] = NULL;
+	}
+
+	//TODO
 	
-	LPWIN32_FIND_DATAA dataFound;
-	FindFirstFileA(aFolder, dataFound);
+	//char FolderLocation[1024];
+	//
+	//LPWIN32_FIND_DATAA dataFound;
+	//FindFirstFileA(aFolder, dataFound);
 	return lTab;
 }
 
