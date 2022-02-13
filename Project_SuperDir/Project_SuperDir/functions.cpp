@@ -16,10 +16,12 @@ IFileInfo** FindFiles(const char* aFolder) {
 
 	//TODO
 	
-	//char FolderLocation[1024];
-	//
-	//LPWIN32_FIND_DATAA dataFound;
-	//FindFirstFileA(aFolder, dataFound);
+	char FolderLocation[1024];
+	
+	WIN32_FIND_DATAA fileData;
+	HANDLE firstFile =  FindFirstFileA(aFolder, &fileData);
+
+	lTab[0] = fileData.;
 	return lTab;
 }
 

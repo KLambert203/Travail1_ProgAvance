@@ -12,7 +12,6 @@ int main (int aCount, const char ** aVector)
 		return 1;
 	}
 
-	std::cout << Salutation();
 	FindFiles(aVector[1]);
 	return 0;
 }
