@@ -5,4 +5,3 @@
 using std::string;
 
 IFileInfo** FindFiles(const char* aFolder);
-string Salutation();

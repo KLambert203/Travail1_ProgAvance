@@ -5,6 +5,7 @@
 
 
 #include "IFileInfo.h"
+#include "FileInfo_Base.h"
 using std::string;
 
 IFileInfo** FindFiles(const char* aFolder) {
@@ -17,16 +18,23 @@ IFileInfo** FindFiles(const char* aFolder) {
 
 	//TODO
 	
-	char FolderLocation[1024];
-	
 	WIN32_FIND_DATAA fileData;
 	HANDLE firstFile =  FindFirstFileA(aFolder, &fileData);
 
-	
-	return lTab;
-}
+	for (unsigned int i = 0; i < 100; i++)
+	{
+		if (firstFile == INVALID_HANDLE_VALUE)
+		{
+			break;
+		}
 
-string Salutation() {
-	string test = "test";
-	return test;
+		
+	}
+
+	std::cout << fileData.dwFileAttributes << std::endl;
+
+	FindNextFileA(firstFile, &fileData);
+	std::cout << fileData.cFileName << std::endl;
+
+	return lTab;
 }
