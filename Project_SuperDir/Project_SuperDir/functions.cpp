@@ -1,3 +1,4 @@
+#include <Windows.h>
 #include <iostream>
 #include <stdlib.h>
 #include <fileapi.h>
@@ -21,7 +22,7 @@ IFileInfo** FindFiles(const char* aFolder) {
 	WIN32_FIND_DATAA fileData;
 	HANDLE firstFile =  FindFirstFileA(aFolder, &fileData);
 
-	lTab[0] = fileData.;
+	
 	return lTab;
 }
 

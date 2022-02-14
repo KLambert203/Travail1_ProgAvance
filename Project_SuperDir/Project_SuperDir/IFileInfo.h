@@ -2,9 +2,7 @@
 
 class IFileInfo
 {
-
-
-private:
+public:
 
 	virtual ~IFileInfo();
 
