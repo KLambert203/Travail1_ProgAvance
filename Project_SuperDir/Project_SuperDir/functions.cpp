@@ -17,16 +17,20 @@ using std::string;
 
 IFileInfo** FindFiles(const char* aFolder) {
 	IFileInfo** lTab = new IFileInfo* [100];
-	unsigned int cnt = 0;
+	char cPath[MAX_PATH];
 
 	for (unsigned int i = 0; i < 100; i++)
 	{
 		lTab[i] = NULL;
 	}
+
+	//strcpy_s(cPath, aFolder);
+	//strcat_s(cPath, "\\");
 	
 	WIN32_FIND_DATAA fileData;
 	HANDLE firstFile =  FindFirstFileA(aFolder, &fileData);
 
+	unsigned int cnt = 0;
 	do
 	{		
 		std::string fileName = fileData.cFileName;
@@ -55,10 +59,7 @@ IFileInfo** FindFiles(const char* aFolder) {
 	} 
 	while (FindNextFileA(firstFile, &fileData) != 0);
 
-	std::cout << fileData.dwFileAttributes << std::endl;
-
-	FindNextFileA(firstFile, &fileData);
-	std::cout << fileData.cFileName << std::endl;
+	std::cout << GetLastError() << std::endl;
 
 	return lTab;
 }
