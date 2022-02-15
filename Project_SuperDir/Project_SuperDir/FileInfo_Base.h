@@ -2,7 +2,7 @@
 #include <iostream>
 #include "IFileInfo.h"
 
-class FileInfo_Base:public IFileInfo 
+class FileInfo_Base: public IFileInfo 
 {
 
 public:
