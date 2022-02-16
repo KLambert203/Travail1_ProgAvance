@@ -5,3 +5,5 @@
 using std::string;
 
 IFileInfo** FindFiles(const char* aFolder);
+void RetrieveInformation(IFileInfo** aFiles);
+void DisplayInformations(IFileInfo** aFiles);

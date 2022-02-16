@@ -23,9 +23,6 @@ IFileInfo** FindFiles(const char* aFolder) {
 	{
 		lTab[i] = NULL;
 	}
-
-	//strcpy_s(cPath, aFolder);
-	//strcat_s(cPath, "\\");
 	
 	WIN32_FIND_DATAA fileData;
 	HANDLE firstFile =  FindFirstFileA(aFolder, &fileData);
@@ -62,4 +59,22 @@ IFileInfo** FindFiles(const char* aFolder) {
 	std::cout << GetLastError() << std::endl;
 
 	return lTab;
+}
+
+void RetrieveInformation(IFileInfo** aFiles) 
+{
+	for (size_t i = 0; i < 100; i++)
+	{
+		if (aFiles[i] == NULL)
+		{
+			break;
+		}
+
+		aFiles[i]->RetrieveInformation();
+	}
+}
+
+void DisplayInformation(IFileInfo** aFiles)
+{
+
 }

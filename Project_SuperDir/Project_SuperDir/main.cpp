@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 #include "functions.h"
-
+#include "IFileInfo.h"
 
 int main (int aCount, const char ** aVector)
 {
@@ -12,6 +12,11 @@ int main (int aCount, const char ** aVector)
 		return 1;
 	}
 
-	FindFiles(aVector[1]);
+	IFileInfo** lTab =  FindFiles(aVector[1]);
+
+	RetrieveInformation(lTab);
+
+	DisplayInformations(lTab);
+
 	return 0;
 }

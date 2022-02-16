@@ -6,5 +6,7 @@
 class FileInfo_Binary: public FileInfo_Base 
 {
 public:
-		virtual void RetrieveInformation();
+	virtual void RetrieveInformation();
+protected:
+	unsigned long int nFileSize;
 };
