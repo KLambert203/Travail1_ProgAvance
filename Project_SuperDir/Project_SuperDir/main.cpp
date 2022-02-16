@@ -12,7 +12,7 @@ int main (int aCount, const char ** aVector)
 		return 1;
 	}
 
-	IFileInfo** lTab =  FindFiles(aVector[1]);
+	IFileInfo** lTab = FindFiles(aVector[1]);
 
 	RetrieveInformation(lTab);
 

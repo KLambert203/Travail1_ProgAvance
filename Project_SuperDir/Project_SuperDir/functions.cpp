@@ -4,7 +4,7 @@
 #include <fileapi.h>
 #include <string>
 
-
+#include "functions.h"
 #include "IFileInfo.h"
 #include "FileInfo_Base.h"
 #include "FileInfo_Binary.h"
@@ -13,57 +13,65 @@
 #include "FileInfo_H.h"
 #include "FileInfo_Other.h"
 #include "FileInfo_Text.h"
-using std::string;
+
+
 
 IFileInfo** FindFiles(const char* aFolder) {
-	IFileInfo** lTab = new IFileInfo* [100];
+	IFileInfo** lTab = new IFileInfo * [100];
+	std::string FolderName = FormatDirectory(aFolder);
 
 	for (unsigned int i = 0; i < 100; i++)
 	{
 		lTab[i] = NULL;
 	}
-	
+
 	WIN32_FIND_DATAA fileData;
-	HANDLE firstFile =  FindFirstFileA(aFolder, &fileData);
+	HANDLE firstFile = FindFirstFileA(FolderName.c_str(), &fileData);
+
+	if (firstFile == INVALID_HANDLE_VALUE)
+	{
+		std::cerr << "FindFirstFileA a echoue" << std::endl;
+		exit;
+	}
 
 	unsigned int cnt = 0;
 	do
-	{		
+	{
 		std::string fileName = fileData.cFileName;
 		std::string ext = fileName.substr(fileName.find_last_of(".") + 1);
 
-		if (strlen(ext.c_str()) <= 3 && fileName != "." && fileName !="..")
+		if (strlen(ext.c_str()) <= 3 && fileName != "." && fileName != "..")
 		{
 			if (ext == "exe")
 			{
-				lTab[cnt] = new FileInfo_EXE();
+				lTab[cnt] = new FileInfo_EXE(aFolder, fileName.c_str());
 				cnt++;
 			}
 			else if (ext == "h")
 			{
-				lTab[cnt] = new FileInfo_H();
+				lTab[cnt] = new FileInfo_H(aFolder, fileName.c_str());
 				cnt++;
 			}
 			else if (ext == "cpp")
 			{
-				lTab[cnt] = new FileInfo_CPP();
+				lTab[cnt] = new FileInfo_CPP(aFolder, fileName.c_str());
 				cnt++;
 			}
 			else
 			{
-				lTab[cnt] = new FileInfo_Other();
+				lTab[cnt] = new FileInfo_Other(aFolder, fileName.c_str());
 				cnt++;
-			}			
+			}
 		}
-	} 
-	while (FindNextFileA(firstFile, &fileData) != 0);
+	} while (FindNextFileA(firstFile, &fileData) != 0);
 
+	FindClose(firstFile);
 	std::cout << GetLastError() << std::endl;
 
 	return lTab;
 }
 
-void RetrieveInformation(IFileInfo** aFiles) 
+void RetrieveInformation(IFileInfo** aFiles)
 {
 	for (size_t i = 0; i < 100; i++)
 	{
@@ -78,5 +86,27 @@ void RetrieveInformation(IFileInfo** aFiles)
 
 void DisplayInformations(IFileInfo** aFiles)
 {
+	for (size_t i = 0; i < 100; i++)
+	{
+		if (aFiles[i] == NULL)
+		{
+			break;
+		}
 
+		aFiles[i]->DisplayInformation();
+	}
+}
+
+std::string FormatDirectory(const char* aFolder)
+{
+	std::string sFolder = aFolder;
+
+
+	if ('*' != aFolder[strlen(aFolder) - 1])
+	{
+		sFolder.append("\\");
+		sFolder.append("*");
+	}
+
+	return sFolder;
 }

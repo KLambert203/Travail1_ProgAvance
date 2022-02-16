@@ -4,6 +4,7 @@ void FileInfo_Text::RetrieveInformation()
 {
 	FILE* lFile;
 	char lLine[1024];
+	nLineCount = 0;
 
 	int lRet = fopen_s(&lFile, mFile, "r");
 	if (0 != lRet)
