@@ -7,6 +7,13 @@ FileInfo_Base::FileInfo_Base(): mFolder(""), mFile("")
 {
 }
 
+FileInfo_Base::FileInfo_Base(const char* aFolder, const char* aFile)
+{
+	strcpy_s(mFile, "");
+	strcpy_s(mFolder, "");
+	Init(aFolder, aFile);
+}
+
 FileInfo_Base::~FileInfo_Base()
 {
 }

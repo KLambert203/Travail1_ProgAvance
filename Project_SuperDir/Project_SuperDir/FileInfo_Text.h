@@ -6,4 +6,6 @@ class FileInfo_Text: public FileInfo_Base
 {
 public:
 	virtual void RetrieveInformation();
+protected:
+	unsigned int nLineCount;
 };

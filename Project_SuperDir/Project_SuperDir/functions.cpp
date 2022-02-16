@@ -17,7 +17,6 @@ using std::string;
 
 IFileInfo** FindFiles(const char* aFolder) {
 	IFileInfo** lTab = new IFileInfo* [100];
-	char cPath[MAX_PATH];
 
 	for (unsigned int i = 0; i < 100; i++)
 	{
@@ -33,26 +32,29 @@ IFileInfo** FindFiles(const char* aFolder) {
 		std::string fileName = fileData.cFileName;
 		std::string ext = fileName.substr(fileName.find_last_of(".") + 1);
 
-		if (strlen(ext.c_str()) <= 3)
+		if (strlen(ext.c_str()) <= 3 && fileName != "." && fileName !="..")
 		{
 			if (ext == "exe")
 			{
 				lTab[cnt] = new FileInfo_EXE();
+				cnt++;
 			}
 			else if (ext == "h")
 			{
 				lTab[cnt] = new FileInfo_H();
+				cnt++;
 			}
 			else if (ext == "cpp")
 			{
 				lTab[cnt] = new FileInfo_CPP();
+				cnt++;
 			}
 			else
 			{
 				lTab[cnt] = new FileInfo_Other();
+				cnt++;
 			}			
 		}
-		cnt++;
 	} 
 	while (FindNextFileA(firstFile, &fileData) != 0);
 
@@ -74,7 +76,7 @@ void RetrieveInformation(IFileInfo** aFiles)
 	}
 }
 
-void DisplayInformation(IFileInfo** aFiles)
+void DisplayInformations(IFileInfo** aFiles)
 {
 
 }

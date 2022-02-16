@@ -9,7 +9,14 @@ void FileInfo_Binary::RetrieveInformation()
 	int lRet = fopen_s(&lFile, mFile, "r");
 	if (0 != lRet)
 	{
-		std::cerr << "ERREUR: Ce fichier ne peut pas être lu." << std::endl;
+		std::cerr << "ERREUR: Ce fichier ne peut pas etre lu." << std::endl;
 		exit;
 	}
+	else
+	{
+		nFileSize = ftell(lFile);
+		fclose(lFile);
+	}
+
+
 }
