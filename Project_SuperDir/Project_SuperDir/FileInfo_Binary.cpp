@@ -1,34 +1,45 @@
-
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <io.h>
+#include <errno.h>
 
 #include "FileInfo_Binary.h"
 
 void FileInfo_Binary::RetrieveInformation()
 {
-	FILE* lFile;
-	nFileSize = 0;
 
-	int lRet = fopen_s(&lFile, mFile, "r");
-	if (0 != lRet)
+	std::string fullPath = mFolder;
+	fullPath.append("\\");
+	fullPath.append(mFile);
+
+	struct stat pstat;
+	FILE *f;
+	errno_t err = fopen_s(&f, fullPath.c_str(), "r");
+
+	if (err != 0)
 	{
-		std::cerr << "ERREUR: Ce fichier ne peut pas etre lu." << std::endl;
-		exit(2);
+		fclose(f);
+		std::cerr << "ERREUR: le fichier ne peut etre ouvert";
 	}
 	else
 	{
-		nFileSize = ftell(lFile);
-		fclose(lFile);
+		fstat(_fileno(f), &pstat);
+		nFileSize = pstat.st_size;
+		fclose(f);
+		FormatFileSize();
 	}
-
-
-	FormatFileSize();
 }
 
 void FileInfo_Binary::FormatFileSize()
 {
+	
 	DataSize = "";
-
+	dFileSize = nFileSize;
 	if (nFileSize >= 0 && nFileSize < 1024) { DataSize = "o"; }
-	else if (nFileSize >= 1024 && nFileSize < 2047) { DataSize = "Kio"; }
-	else if (nFileSize >= 2048 && nFileSize < 4095) { DataSize = "Mio"; }
-	else{ DataSize = "Gio"; }
+	else if (nFileSize >= 1024 && nFileSize < 102400) { DataSize = "Kio"; dFileSize /= 1000; }
+	else if (nFileSize >= 1024000 && nFileSize < 1024000000) { DataSize = "Mio"; dFileSize /= 1000000;}
+	else{ DataSize = "Gio"; dFileSize /= 1000000000;}
+
+
 }

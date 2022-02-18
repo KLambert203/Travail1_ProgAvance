@@ -11,5 +11,6 @@ FileInfo_Other::FileInfo_Other(const char* aFolder, const char* aFiles)
 
 void FileInfo_Other::DisplayInformation()
 {
-	std::cout << mFile << std::setw(20) << nFileSize << " octets" << std::endl;
+	std::cout.precision(2);
+	std::cout << mFile << std::setw(20) << dFileSize << " " << DataSize << std::endl;
 }

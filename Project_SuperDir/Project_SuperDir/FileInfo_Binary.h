@@ -11,5 +11,6 @@ protected:
 	void FormatFileSize();
 
 	unsigned long nFileSize;
+	double dFileSize;
 	std::string DataSize;
 };
