@@ -40,7 +40,7 @@ IFileInfo** FindFiles(const char* aFolder) {
 		std::string fileName = fileData.cFileName;
 		std::string ext = fileName.substr(fileName.find_last_of(".") + 1);
 
-		if (strlen(ext.c_str()) <= 3 && fileName != "." && fileName != "..")
+		if (strlen(ext.c_str()) <= 3 && fileName != "." && fileName != ".." && fileName != "x64")
 		{
 			if (ext == "exe")
 			{
@@ -94,6 +94,14 @@ void DisplayInformations(IFileInfo** aFiles)
 		}
 
 		aFiles[i]->DisplayInformation();
+	}
+}
+
+void ReleaseMemory(IFileInfo** aFiles)
+{
+	for (size_t i = 0; i < sizeof(aFiles); i++)
+	{
+		delete aFiles[i];
 	}
 }
 

@@ -9,6 +9,7 @@ int main (int aCount, const char ** aVector)
 {
 	if (2 > aCount)
 	{
+		printf_s("Vous devez spécifier un répertoire à analyser!");
 		return 1;
 	}
 
@@ -17,6 +18,8 @@ int main (int aCount, const char ** aVector)
 	RetrieveInformation(lTab);
 
 	DisplayInformations(lTab);
+
+	ReleaseMemory(lTab);
 
 	return 0;
 }

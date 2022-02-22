@@ -12,3 +12,5 @@ void RetrieveInformation(IFileInfo** aFiles);
 
 void DisplayInformations(IFileInfo** aFiles);
 
+void ReleaseMemory(IFileInfo** aFiles);
+
