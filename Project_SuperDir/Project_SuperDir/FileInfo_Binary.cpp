@@ -37,7 +37,7 @@ void FileInfo_Binary::FormatFileSize()
 	DataSize = "";
 	dFileSize = nFileSize;
 	if (nFileSize >= 0 && nFileSize < 1024) { DataSize = "o"; }
-	else if (nFileSize >= 1024 && nFileSize < 102400) { DataSize = "Kio"; dFileSize /= 1000; }
+	else if (nFileSize >= 1024 && nFileSize < 1024000) { DataSize = "Kio"; dFileSize /= 1000; }
 	else if (nFileSize >= 1024000 && nFileSize < 1024000000) { DataSize = "Mio"; dFileSize /= 1000000;}
 	else{ DataSize = "Gio"; dFileSize /= 1000000000;}
 

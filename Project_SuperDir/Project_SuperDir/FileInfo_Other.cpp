@@ -13,5 +13,5 @@ void FileInfo_Other::DisplayInformation()
 {
 	std::cout	<< std::fixed << std::setprecision(2);
 	std::cout	<< std::left << std::setw(20) << mFile
-				<< std::right << std::setw(20) << dFileSize << " " << DataSize << std::endl;
+				<< std::right << std::setw(18) << dFileSize << " " << DataSize << std::endl;
 }
