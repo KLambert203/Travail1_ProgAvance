@@ -107,6 +107,7 @@ void ReleaseMemory(IFileInfo** aFiles)
 	{
 		delete aFiles[i];
 	}
+	delete aFiles;
 }
 
 std::string FormatDirectory(const char* aFolder)
