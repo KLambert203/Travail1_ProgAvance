@@ -19,7 +19,6 @@ void FileInfo_Binary::RetrieveInformation()
 
 	if (err != 0)
 	{
-		fclose(f);
 		std::cerr << "ERREUR: le fichier ne peut etre ouvert";
 	}
 	else
