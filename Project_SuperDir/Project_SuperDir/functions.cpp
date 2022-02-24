@@ -38,9 +38,13 @@ IFileInfo** FindFiles(const char* aFolder) {
 	do
 	{
 		std::string fileName = fileData.cFileName;
-		std::string ext = fileName.substr(fileName.find_last_of(".") + 1);
+		int index = fileName.find_last_of(".");
+		std::string ext;
 
-		if (strlen(ext.c_str()) <= 3 && fileName != "." && fileName != ".." && fileName != "x64")
+		if (index > 0){ext = fileName.substr(fileName.find_last_of(".") + 1);}
+		else{ext = "";}
+
+		if (strlen(ext.c_str()) <= 3 && ext != "")
 		{
 			if (ext == "exe")
 			{

@@ -9,7 +9,7 @@ int main (int aCount, const char ** aVector)
 {
 	if (2 > aCount)
 	{
-		printf_s("Vous devez spécifier un répertoire à analyser!");
+		printf_s("Vous devez specifier un repertoire a analyser!");
 		return 1;
 	}
 
